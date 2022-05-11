@@ -1,0 +1,84 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define pi 3.141592654
+
+
+
+
+
+void solve()
+{
+    ll n;
+    cin >> n;
+    vector<ll> v(n);
+    vector<ll> cl, cr;
+    map<ll, ll> mp;
+
+
+    for (int i = 0; i < n; i++)
+        cin >> v[i];
+    cl = v;
+    cr = v;
+
+    mp[cl[0]] = 1;
+    for (int i = 1; i < n; i++)
+    {
+        cl[i] += cl[i - 1];
+        mp[cl[i]] = i + 1;
+    }
+
+
+    for (int i = n - 2; i >= 0; i--)
+    {
+        cr[i] += cr[i + 1];
+    }
+    int ans = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (mp[cr[i]] != 0)
+        {
+            int temp = mp[cr[i]] + n - i;
+            if (temp <= n && temp > ans)
+            {
+                ans = temp;
+            }
+        }
+    }
+    cout << ans << endl;
+
+    // for (int i = 0; i < n; i++)
+    //     cout << cl[i] << " ";
+    // cout << endl;
+    // for (int i = 0; i < n; i++)
+    //     cout << cr[i] << " ";
+    // cout << endl;
+
+    
+    // for (int i = 0; i < n - 1; i++)
+    // {
+    //     ll temp_eat = 0;
+    //     for (int j = i + 1; j < n && cl[i] <= cr[j]; j++)
+    //     {
+    //         if (cl[i] == cr[j])
+    //         {
+    //             temp_eat = i + 1 + n - j;
+    //         }
+    //     }
+    //     if (temp_eat > max_eat)
+    //         max_eat = temp_eat;
+    // }
+    // cout << max_eat << endl;
+}
+
+int main()
+{
+    ll t = 1;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+    return 0;
+}
