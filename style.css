@@ -1,6 +1,7 @@
-body{
+body {
     background-color: red;
+    margin: 20px;
     padding: 30px;
     text-align: center;
-    border: 33px;
+    border: 25px;
 }
